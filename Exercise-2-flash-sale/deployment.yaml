@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flash-sale-app
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: flash-sale-app
+  template:
+    metadata:
+      labels:
+        app: flash-sale-app
+    spec:
+      containers:
+        - name: flash-sale-app
+          image: flash-sale-app:v1
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 5000
+          resources:
+            requests:
+              cpu: 100m
+              memory: 64Mi
+            limits:
+              cpu: 500m
+              memory: 256Mi
